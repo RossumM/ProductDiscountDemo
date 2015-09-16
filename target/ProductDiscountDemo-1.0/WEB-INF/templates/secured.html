@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec=
+"http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"> 
+
+<head th:replace="fragments/head :: head">
+ </head>
+
+<body>
+  <div id="main">
+    <header th:replace="fragments/header :: header">
+    </header>
+      
+    <div id="site_content">
+      <div id="sidebar_container" th:replace="fragments/sidebar :: sidebar">
+        </div>
+      <div class="content">
+        <h1>Hallo <span sec:authentication="name">someone</span>, je bent nu ingelogd en op een beveiligde pagina.</h1>
+                
+      </div>
+    </div>
+    <div id="scroll">
+      <a title="Scroll to the top" class="top" href="#"><img th:src="@{/resources/images/top.png}" /></a>
+    </div>
+    <footer th:replace="fragments/footer :: footer">
+    </footer>
+  </div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" th:src="@{/resources/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/resourcesjs/jquery.easing-sooper.js}"></script>
+  <script type="text/javascript" th:src="@{/resources/js/jquery.sooperfish.js}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+      $('.top').click(function() {$('html, body').animate({scrollTop:0}, 'fast'); return false;});
+    });
+  </script>
+</body>
+</html>

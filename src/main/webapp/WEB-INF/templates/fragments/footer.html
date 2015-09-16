@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Insert title here</title>
+</head>
+<body>
+<footer th:fragment="footer">
+	  <p><a th:href="@{/logout}">Logout</a></p>
+      <p><img th:src="@{/resources/images/twitter.png}" alt="twitter" />&nbsp;<img th:src="@{/resources/images/facebook.png}" alt="facebook" />&nbsp;<img th:src="@{/resources/images/rss.png}" alt="rss" /></p>
+      <p><a th:href="@{/home}">Home</a> | <a href="examples.html">Examples</a> | <a href="page.html">A Page</a> | <a href="another_page.html">Another Page</a> | <a href="contact.php">Contact Us</a></p>
+      <p>Copyright &copy; CSS3_seven | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
+</footer>
+
+</body>
+</html>

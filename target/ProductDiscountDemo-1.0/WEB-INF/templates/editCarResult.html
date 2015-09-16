@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="fragments/head :: head">
+ </head>
+
+<body>
+  <div id="main">
+    <header th:replace="fragments/header :: header">
+    </header>
+      
+    <div id="site_content">
+      <div id="sidebar_container" th:replace="fragments/sidebar :: sidebar">
+        </div>
+      <div class="content" th:object="${car}">
+        <h1 >Het 'car' product met naam ' <span th:text="*{name}"></span>', bevat nu de volgende gegevens:</h1>
+        <p></p>
+        <table>
+                    <tr><td>Productnaam:</td><td><span th:text="*{name}"></span>
+                    </td></tr>
+                    <tr><td>Categorie:</td><td><span th:text="*{category == 'null'}? 'Overig' : *{category}"></span>
+                                </td></tr>
+                    <tr><td>Productbeschrijving:</td><td><span th:text="${car.description}"></span>
+                           </td></tr>
+                    <tr><td>Originele prijs:</td><td><span id="originalPrice" th:text="${car.originalPrice}"></span>
+			</td></tr>
+                    <tr><td>Kortingspercentage:</td><td><span id="discount" th:text="${car.discount}"></span>
+			</td></tr>
+
+                    <tr><td>Nieuwe prijs:</td><td><span id="newprice"></span>
+			</td></tr>
+                 			
+			</table>
+        <p><a href="dummy" th:href="@{/carlist}">Terug naar de carlijst</a></p>
+        
+      </div>
+    </div>
+    </div>
+    <div id="scroll">
+      <a title="Scroll to the top" class="top" href="#"><img th:src="@{/resources/images/top.png}" alt="top" /></a>
+    </div>
+    <footer th:replace="fragments/footer :: footer">
+    </footer>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" th:src="@{/resources/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/resourcesjs/jquery.easing-sooper.js}"></script>
+  <script type="text/javascript" th:src="@{/resources/js/jquery.sooperfish.js}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+      $('.top').click(function() {$('html, body').animate({scrollTop:0}, 'fast'); return false;});
+      document.getElementById("newprice").innerHTML = parseFloat(document.getElementById("originalPrice").innerHTML) - (parseFloat
+(document.getElementById("originalPrice").innerHTML) * parseInt(document.getElementById("discount").innerHTML) / 100);
+    });
+  </script>
+</body>
+</html>

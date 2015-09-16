@@ -1,0 +1,7 @@
+Deze web-applicatie is in ontwikkeling en heeft uiteindelijk tot doel om een interface te bieden waarmee gebruikers van deze applicatie (MKB'ers) push notificaties
+kunnen sturen aan een Android app, waarmee subscribers worden geattendeerd op last minute aanbiedingen in de leefomgeving (of actuele locatie) van de subscriber.
+De genoemde aanbiedingen gelden alleen voor subscribers van de app als zij een bijhorende barcode (te zien na klikken op push notificatie) kunnen laten zien aan de kassa. 
+Er is tot nu toe gewerkt aan de back end webpagina, waarbinnen op dit moment producten toegevoegd, weergegeven en beheerd kunenn worden. 
+
+De webapp bouwt voort op het Spring framework, Spring security en Hibernate voro dataopslag. De templates zijn gebouwd op de templateEngine Thymeleaf. Zie voor meer toelichting
+de documentatie in KortingApp\src\main\java\controller\Webconfig.java 

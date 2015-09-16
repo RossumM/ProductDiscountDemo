@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head">
+ </head>
+
+<body>
+  <div id="main">
+    <header th:replace="fragments/header :: header">
+    </header>
+    <div id="site_content">
+      <div id="sidebar_container" th:replace="fragments/sidebar :: sidebar">
+        </div>
+      <div class="content">
+        <h1>Je kunt hier inloggen</h1>
+        <form name='f' th:action='@{/login}' method='POST'>
+        <table>
+			<tr><td>User:</td><td>
+			<input type='text' name='username' value='' /></td></tr>
+			<tr><td>Password:</td>
+			<td><input type='password' name='password'/></td></tr>
+			<tr><td colspan='2'>
+			<input id="remember_me" name="remember-me" type="checkbox"/>
+			<label for="remember_me" class="inline">Remember me</label>
+			<input name="submit" type="submit" value="Login"/></td></tr>
+		</table>
+      
+      
+      </form></div>
+    </div>
+    <div id="scroll">
+      <a title="Scroll to the top" class="top" href="#"><img th:src="@{/resources/images/top.png}" alt="top" /></a>
+    </div>
+    <footer th:replace="fragments/footer :: footer">
+    </footer>
+  </div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" th:src="@{/resources/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/resourcesjs/jquery.easing-sooper.js}"></script>
+  <script type="text/javascript" th:src="@{/resources/js/jquery.sooperfish.js}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+      $('.top').click(function() {$('html, body').animate({scrollTop:0}, 'fast'); return false;});
+    });
+  </script>
+</body>
+</html>

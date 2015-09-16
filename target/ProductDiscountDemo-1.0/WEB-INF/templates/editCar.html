@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec=
+"http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"> 
+
+<head th:replace="fragments/head :: head">
+ </head>
+
+<body>
+  <div id="main">
+    <header th:replace="fragments/header :: header">
+    </header>
+      
+    <div id="site_content">
+      <div id="sidebar_container" th:replace="fragments/sidebar :: sidebar">
+        </div>
+      <div class="content">
+        <h1>Hallo <span sec:authentication="name">someone</span>, je kunt hier het product in categorie 'car'S wijzigen.</h1>
+            <form method="POST" th:object="${car}" th:action='@{/editcar/} + ${car.id}'>
+        <div class="errors" th:if="${#fields.hasErrors('*')}">
+          <ul>
+            <li th:each="err : ${#fields.errors('*')}" 
+                th:text="${err}">Input is incorrect</li>
+          </ul>
+        </div>
+             <table>
+			<tr><td><label th:class="${#fields.hasErrors('name')}? 'error'">Productnaam</label>:</td><td>
+			<input type="text" th:field="*{name}"
+                 th:class="${#fields.hasErrors('name')}? 'error'" /></td></tr>
+                 <tr><td><label>Categorie</label>:</td><td>
+                         <select th:field="*{category}">
+                                <option value="Groente">Groente</option>
+                                <option value="Fruit">Fruit</option>
+                                <option value="Tuinafval">Tuinafval</option>
+                                <option value="null">Overig</option>
+                         </select>
+                     </td></tr>
+                 <tr><td><label th:class="${#fields.hasErrors('description')}? 'error'">Productbeschrijving</label>:</td><td>
+			<input type="text" th:field="*{description}"
+                 th:class="${#fields.hasErrors('description')}? 'error'" /></td></tr>
+                 <tr><td><label th:class="${#fields.hasErrors('originalPrice')}? 'error'">Originele prijs</label>:</td><td>
+			<input id="originalPrice" name="originalPrice" type="text" oninput="newPrice()" th:field="*{originalPrice}"
+                 th:class="${#fields.hasErrors('originalPrice')}? 'error'" /></td></tr>
+                 <tr><td><label th:class="${#fields.hasErrors('discount')}? 'error'">kortingspercentage</label>:</td><td>
+			<input type="text" name = "discount" id="discount" oninput="newPrice()" th:field="*{discount}"
+                 th:class="${#fields.hasErrors('discount')}? 'error'" /></td></tr>
+                 <tr><td><label>Nieuwe prijs:</label></td><td>
+                         <span id="validatePrice"></span></td></tr>
+                 <tr><td colspan='2'>
+			<input type="submit" value="Wijzigen" /></td></tr>
+                 		
+		</table>
+      
+      </form>    
+      </div>
+    </div>
+    <div id="scroll">
+      <a title="Scroll to the top" class="top" href="#"><img th:src="@{/resources/images/top.png}" /></a>
+    </div>
+    <footer th:replace="fragments/footer :: footer">
+    </footer>
+  </div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" th:src="@{/resources/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/resourcesjs/jquery.easing-sooper.js}"></script>
+  <script type="text/javascript" th:src="@{/resources/js/jquery.sooperfish.js}"></script>
+  <script type="text/javascript" th:src="@{/resources/js/discount_validator.js}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        newPrice();
+      $('ul.sf-menu').sooperfish();
+      $('.top').click(function() {$('html, body').animate({scrollTop:0}, 'fast'); return false;});
+    });
+  </script>
+</body>
+</html>

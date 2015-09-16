@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"> 
+
+<head th:replace="fragments/head :: head">
+ </head>
+
+<body>
+  <div id="main">
+    <header th:replace="fragments/header :: header">
+    </header>
+      
+    <div id="site_content">
+      <div id="sidebar_container" th:replace="fragments/sidebar :: sidebar">
+        </div>
+      <div class="content">
+        <h1>Weet u zeker dat u de volgende 'bike' producten wil verwijderen?:</h1>
+        <p></p>
+        <form method="GET" th:object="${bike}" th:action='@{/deletebikes_confirm}'>
+        <table>
+            <tr>
+	        <th>Productnaam: </th>
+                <th>Categorie: </th>
+	        <th>Omschrijving: </th>
+	        <th>Originele prijs: </th>
+	        <th>Kortingspercentage</th>
+                <th></th>
+	      </tr>
+	      <tr  th:each="item : ${bikes}">
+	        <td th:text="${item.name}">naam</td>
+                <td th:switch="${item.category}">
+                    <div th:case="'null'">Overig</div>
+                    <div th:case="*"><div th:text="${item.category}"/></div>
+                    </td>
+	        <td th:text="${item.description}">beschrijving</td>
+	        <td th:text="${item.originalPrice}">Name</td>
+	        <td th:text="${item.discount}">korting</td>
+                <td><input name="rmv" type="hidden" th:value="${item.id}"/></td>
+
+	      </tr>	
+        </table>
+            <input type="submit" value="Doorgaan met verwijderen"/>
+             </form>
+        <p></p>
+        
+        
+        
+        
+      </div>
+    </div>
+    <div id="scroll">
+      <a title="Scroll to the top" class="top" href="#"><img th:src="@{/resources/images/top.png}" alt="top" /></a>
+    </div>
+    <footer th:replace="fragments/footer :: footer">
+    </footer>
+  </div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" th:src="@{/resources/js/jquery.js}"></script>
+  <script type="text/javascript" th:src="@{/resourcesjs/jquery.easing-sooper.js}"></script>
+  <script type="text/javascript" th:src="@{/resources/js/jquery.sooperfish.js}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.sf-menu').sooperfish();
+      $('.top').click(function() {$('html, body').animate({scrollTop:0}, 'fast'); return false;});
+    });
+  </script>
+</body>
+</html>

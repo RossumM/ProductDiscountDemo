@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Insert title here</title>
+</head>
+<body>
+    <header th:fragment="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="index.html">Korting<span class="logo_colour">Actueel</span></a></h1>
+          <h2>Het meest onverwachte voordeel vind je hier!</h2>
+        </div>
+      </div>
+      <nav>
+        <div id="menu_container">
+          <ul class="sf-menu" id="nav">
+            <li><a href="test.html" th:href="@{/home}">Home</a></li>
+            <li><a href="test.html" th:href="@{/register}">Registreer</a></li>
+            <li><a href="page.html" th:href="@{/secured}">Beveiligd</a></li>
+            <li><a href="another_page.html" th:href="@{/addproduct/bike}">Product toevoegen</a>
+              <ul>
+                  <li><a href="another_page.html" th:href="@{/addproduct/bike}">Fiets toevoegen</a></li>
+                <li><a href="another_page.html" th:href="@{/addproduct/car}">Auto toevoegen</a></li>
+                <li><a href="#">Drop Down Three</a></li>
+                <li><a href="#">Drop Down Four</a></li>
+                <li><a href="#">Drop Down Five</a></li>
+              </ul>
+            </li>
+            <li><a href="another_page.html" th:href="@{/productlist/bike}">Alle fietsen</a></li>
+            <li><a href="another_page.html" th:href="@{/productlist/car}">Alle auto's</a>
+              <ul>
+                <li><a href="#">Drop Down One</a></li>
+                <li><a href="#">Drop Down Two</a>
+                  <ul>
+                    <li><a href="#">Sub Drop Down One</a></li>
+                    <li><a href="#">Sub Drop Down Two</a></li>
+                    <li><a href="#">Sub Drop Down Three</a></li>
+                    <li><a href="#">Sub Drop Down Four</a></li>
+                    <li><a href="#">Sub Drop Down Five</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Drop Down Three</a></li>
+                <li><a href="#">Drop Down Four</a></li>
+                <li><a href="#">Drop Down Five</a></li>
+              </ul>
+            </li>
+            <li><a href="contact.php">Contact Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+</body>
+</html>
