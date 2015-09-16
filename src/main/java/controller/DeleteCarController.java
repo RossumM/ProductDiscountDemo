@@ -27,19 +27,19 @@ import org.springframework.web.bind.support.SessionStatus;
 public class DeleteCarController {
     
 @Autowired
-    DAOs.GenericDAO dao;
+    dao.GenericDAO dao;
     
     @ModelAttribute// definiëren van het model attribute dat in de sessie gebruikt wordt
-    public List<models.Car> products(){
+    public List<model.Car> products(){
         return new ArrayList<>();
     }
     
     //Alvorens te verwijderen moeten eerst alle betreffenden producten (uit URL parameters) in de database gevonden worden.
     @RequestMapping(value="deleteproducts/car", method=RequestMethod.GET)
     public String deleteConfirmDialog(@RequestParam("rmv") List<Integer> deletables, Model model){
-        List<models.Car> products = dao.findProductListById(models.Car.class, deletables);
+        List<model.Car> products = dao.findProductListById(model.Car.class, deletables);
          model.addAttribute("products", products); //gevonden producten in sessie attribuut zetten
-        for(models.Car item : products){
+        for(model.Car item : products){
             
             System.out.println(item.getName() + " wordt verwijderd");
         }
@@ -49,7 +49,7 @@ public class DeleteCarController {
     }
     
     @RequestMapping(value="deleteproducts_confirm/car", method=GET)
-    public String deleteConfirmed(@ModelAttribute("products") List<models.Car> products, SessionStatus status){
+    public String deleteConfirmed(@ModelAttribute("products") List<model.Car> products, SessionStatus status){
         dao.deleteProducts(products); //producten worden nu daadwerkelijk verwijderd
         System.out.println("producten verwijderd");
         status.setComplete(); //sessie opruimen

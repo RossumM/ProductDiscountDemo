@@ -7,7 +7,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.GenericProduct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import model.GenericProduct;
+
 /**
  *
  * @author Merijn
@@ -29,19 +31,19 @@ import org.springframework.web.bind.support.SessionStatus;
 public class DeleteBikeController {
     
 @Autowired
-    DAOs.GenericDAO dao;
+    dao.GenericDAO dao;
     
     @ModelAttribute// definiëren van het model attribute dat in de sessie gebruikt wordt
-    public List<models.Bike> products(){
+    public List<model.Bike> products(){
         return new ArrayList<>();
     }
     
     //Alvorens te verwijderen moeten eerst alle betreffenden producten (uit URL parameters) in de database gevonden worden.
     @RequestMapping(value="deleteproducts/bike", method=RequestMethod.GET)
     public String deleteConfirmDialog(@RequestParam("rmv") List<Integer> deletables, Model model){
-        List<models.Bike> products = dao.findProductListById(models.Bike.class, deletables);
+        List<model.Bike> products = dao.findProductListById(model.Bike.class, deletables);
          model.addAttribute("products", products); //gevonden producten in sessie attribuut zetten
-        for(models.Bike item : products){
+        for(model.Bike item : products){
             
             System.out.println(item.getName() + " wordt verwijderd");
         }
@@ -51,7 +53,7 @@ public class DeleteBikeController {
     }
     
     @RequestMapping(value="deleteproducts_confirm/bike", method=GET)
-    public String deleteConfirmed(@ModelAttribute("products") List<models.Bike> products, SessionStatus status){
+    public String deleteConfirmed(@ModelAttribute("products") List<model.Bike> products, SessionStatus status){
         dao.deleteProducts(products); //producten worden nu daadwerkelijk verwijderd
         System.out.println("producten verwijderd");
         status.setComplete(); //sessie opruimen

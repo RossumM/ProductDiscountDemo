@@ -85,7 +85,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
         LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 
-        sessionBuilder.addAnnotatedClasses(models.User.class, models.GenericProduct.class);
+        sessionBuilder.addAnnotatedClasses(model.User.class, model.GenericProduct.class);
         sessionBuilder.addProperties(getHibernateProperties());
 
         return sessionBuilder.buildSessionFactory();

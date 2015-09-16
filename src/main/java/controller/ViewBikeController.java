@@ -20,14 +20,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class ViewBikeController {
  
     @Autowired
-    DAOs.GenericDAO dao; //om producten toe te kunnen voegen
+    dao.GenericDAO dao; //om producten toe te kunnen voegen
 
     
     @RequestMapping(value="productlist/bike", method=GET)
     public String showProducts(Model model){
-        List<models.Bike> products = dao.findAllProducts(models.Bike.class);
+        List<model.Bike> products = dao.findAllProducts(model.Bike.class);
         
-        for(models.Bike item : products){
+        for(model.Bike item : products){
             System.out.println("product : " + item.getName());
         }
     		model.addAttribute("products", products);

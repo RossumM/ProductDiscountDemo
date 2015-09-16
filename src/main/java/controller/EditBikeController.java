@@ -25,18 +25,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EditBikeController {
     
     @Autowired
-    DAOs.GenericDAO dao;
+    dao.GenericDAO dao;
     
     @RequestMapping(value="editproduct/bike/{id}", method=GET)  //betreffende productgegevens ophalen
     public String showProductEdit(@PathVariable String id, Model model) {
-        model.addAttribute(dao.findProductById(Long.parseLong(id), models.Car.class));
+        model.addAttribute(dao.findProductById(Long.parseLong(id), model.Car.class));
                
       return "editBike";
     }
     
     
     @RequestMapping(value="editproduct/bike/{id}", method=POST) //de form input wordt getoets aan de Product velden, bij fouten terug naar het formulier
-    public String processProductEdit( @PathVariable String id, @Valid models.Car product, Errors errors, RedirectAttributes model) { //RedirectAttributes zijn nodig om de gebruiker ook na redirect te onthouden
+    public String processProductEdit( @PathVariable String id, @Valid model.Car product, Errors errors, RedirectAttributes model) { //RedirectAttributes zijn nodig om de gebruiker ook na redirect te onthouden
       if (errors.hasErrors() || errors == null) {
         return "editBike";
       }else{
@@ -50,7 +50,7 @@ public class EditBikeController {
     public String showChange(@PathVariable String producttype, @PathVariable String id, Model model){
     	if(!model.containsAttribute("id")){ //failsafe voor als Flashattribute toch niet blijkt te werken. Dan opnieuw gebruiker opzoeken via URL path variable 'id'
             System.out.println("Geen product in model");
-            model.addAttribute(dao.findProductById(Long.parseLong(id), models.Car.class));
+            model.addAttribute(dao.findProductById(Long.parseLong(id), model.Car.class));
     	}
     	return "editBikeResult";
     }

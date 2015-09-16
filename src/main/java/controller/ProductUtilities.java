@@ -19,11 +19,11 @@ public class ProductUtilities {
     public static Class getProductClassFromUrlString(String productType){
         Class c;
         switch(productType){
-            case "car": c = models.Car.class;
+            case "car": c = model.Car.class;
                 break;
-            case "bike": c = models.Bike.class;
+            case "bike": c = model.Bike.class;
                 break;
-            default: c = models.GenericProduct.class;
+            default: c = model.GenericProduct.class;
                 logger.debug("General product selected");
         }
         
